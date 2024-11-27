@@ -453,6 +453,7 @@ class Map:
 
         async def on_major_map(event: MajorMapEvent) -> None:
             async with asyncio.TaskGroup() as tg:
+                _LOGGER.warning(f"[get_svg_map] {value}")
                 for idx, value in enumerate(event.values):
                     if (
                         self._map_data.map_pieces[idx].crc32_indicates_update(value)
