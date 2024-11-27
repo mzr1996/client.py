@@ -138,6 +138,7 @@ class LifeSpan(str, Enum):
     LENS_BRUSH = "lensBrush"
     DUST_BAG = "dustBag"
     CLEANING_FLUID = "autoWater_cleaningFluid"
+    CLEANING_SOLUTION = 'cleaningSolution'
     STRAINER = "strainer"
     HAND_FILTER = "handFilter"
 
