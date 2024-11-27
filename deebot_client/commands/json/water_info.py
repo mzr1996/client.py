@@ -36,9 +36,14 @@ class GetWaterInfo(JsonGetCommand):
         if sweep_type := data.get("sweepType"):
             sweep_type = SweepType(int(sweep_type))
 
+        if water_amount := data.get("amount"):
+            water_amount = WaterAmount(int(water_amount))
+        elif water_amount := data.get("customAmount"):
+            water_amount = WaterAmount(int(water_amount))
+
         event_bus.notify(
             WaterInfoEvent(
-                WaterAmount(int(data["amount"])),
+                water_amount,
                 sweep_type,
                 mop_attached=mop_attached,
             )
