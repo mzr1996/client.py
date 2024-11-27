@@ -104,6 +104,7 @@ class GetMajorMap(JsonCommandWithMessageHandling, MessageBodyDataDict):
 
         :return: A message response
         """
+        _LOGGER.warning(f"[get_svg_map] {data}")
         values = data["value"].split(",")
         map_id = data["mid"]
 
