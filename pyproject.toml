@@ -28,6 +28,7 @@ dependencies = [
     "numpy>=1.23.2,<3.0",
     "pillow>=10,<12",
     "svg-py>=1.4.2",
+    "zstd>=1.5.5",
 ]
 version = "0.0.0"
 
