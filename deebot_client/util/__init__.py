@@ -18,12 +18,23 @@ if TYPE_CHECKING:
     from collections.abc import Callable, Coroutine, Iterable
 
 _T = TypeVar("_T")
+ZSTD_MAGIC = base64.b64encode(0x28b52ffd.to_bytes(4, 'big'))
 
 
 def md5(text: str) -> str:
     """Hash text using md5."""
     return hashlib.md5(bytes(str(text), "utf8")).hexdigest()  # noqa: S324
 
+
+def decompress_base64_data(data: str) -> bytes:
+    # Dispatch according to compression algorithm.
+    if data.startswith(ZSTD_MAGIC):
+        # For ZSTD format
+        import zstd
+        return zstd.decompress(base64.b64decode(data))
+    else:
+        # For LZMA format
+        return decompress_7z_base64_data(data)
 
 def decompress_7z_base64_data(data: str) -> bytes:
     """Decompress base64 decoded 7z compressed string."""
