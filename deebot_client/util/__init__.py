@@ -30,8 +30,8 @@ def decompress_base64_data(data: str) -> bytes:
     # Dispatch according to compression algorithm.
     if data.startswith(ZSTD_MAGIC):
         # For ZSTD format
-        import zstd
-        return zstd.decompress(base64.b64decode(data))
+        import zstandard
+        return zstandard.decompress(base64.b64decode(data))
     else:
         # For LZMA format
         return decompress_7z_base64_data(data)
